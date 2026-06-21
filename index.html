@@ -1,46 +1,607 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Chahat Grover</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chahat Grover | Software Engineer Portfolio</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #0f172a;
+      color: #e5e7eb;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1150px;
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 800;
+      color: #38bdf8;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      font-size: 15px;
+    }
+
+    .nav-links a:hover {
+      color: #38bdf8;
+    }
+
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      padding: 70px 0;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 22px;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    .hero h1 {
+      font-size: 58px;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 span {
+      color: #38bdf8;
+    }
+
+    .hero h2 {
+      font-size: 24px;
+      color: #cbd5e1;
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+
+    .hero p {
+      color: #94a3b8;
+      max-width: 680px;
+      font-size: 17px;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 13px 22px;
+      border-radius: 10px;
+      font-weight: 700;
+      transition: 0.3s;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: #38bdf8;
+      color: #020617;
+    }
+
+    .btn-primary:hover {
+      background: #0ea5e9;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      border: 1px solid #38bdf8;
+      color: #38bdf8;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(56, 189, 248, 0.12);
+      transform: translateY(-2px);
+    }
+
+    .profile-card {
+      background: linear-gradient(145deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 28px;
+      padding: 28px;
+      text-align: center;
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
+    }
+
+    .profile-photo,
+    .photo-placeholder {
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      border: 5px solid #38bdf8;
+      margin: 0 auto 24px;
+      background: linear-gradient(135deg, #38bdf8, #2563eb);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 70px;
+      font-weight: 900;
+      color: white;
+      object-fit: cover;
+    }
+
+    .profile-card h3 {
+      font-size: 26px;
+      margin-bottom: 8px;
+    }
+
+    .profile-card p {
+      color: #94a3b8;
+      font-size: 15px;
+    }
+
+    section {
+      padding: 85px 0;
+    }
+
+    .section-title {
+      font-size: 38px;
+      margin-bottom: 14px;
+      text-align: center;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: #94a3b8;
+      max-width: 720px;
+      margin: 0 auto 45px;
+    }
+
+    .about-box {
+      background: #111827;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 34px;
+      color: #cbd5e1;
+      font-size: 17px;
+    }
+
+    .skills-grid,
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .skill-card,
+    .project-card,
+    .experience-card {
+      background: #111827;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      padding: 26px;
+      transition: 0.3s;
+    }
+
+    .skill-card:hover,
+    .project-card:hover,
+    .experience-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(56, 189, 248, 0.5);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+    }
+
+    .skill-card h3,
+    .project-card h3,
+    .experience-card h3 {
+      color: #38bdf8;
+      margin-bottom: 12px;
+      font-size: 21px;
+    }
+
+    .skill-card p,
+    .project-card p,
+    .experience-card p {
+      color: #94a3b8;
+      font-size: 15px;
+    }
+
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .tech-stack span {
+      background: rgba(56, 189, 248, 0.12);
+      color: #7dd3fc;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+    }
+
+    .experience-list {
+      display: grid;
+      gap: 22px;
+    }
+
+    .experience-card .date {
+      color: #38bdf8;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .contact-box {
+      background: linear-gradient(145deg, #0ea5e9, #2563eb);
+      color: white;
+      border-radius: 24px;
+      padding: 45px;
+      text-align: center;
+    }
+
+    .contact-box h2 {
+      font-size: 36px;
+      margin-bottom: 14px;
+    }
+
+    .contact-box p {
+      margin-bottom: 28px;
+      color: #e0f2fe;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .contact-links a {
+      background: white;
+      color: #0f172a;
+      padding: 12px 18px;
+      border-radius: 10px;
+      font-weight: 700;
+      transition: 0.3s;
+    }
+
+    .contact-links a:hover {
+      transform: translateY(-2px);
+      background: #e0f2fe;
+    }
+
+    footer {
+      text-align: center;
+      padding: 28px;
+      color: #64748b;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .skills-grid,
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .profile-photo,
+      .photo-placeholder {
+        width: 220px;
+        height: 220px;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      .section-title {
+        font-size: 30px;
+      }
+
+      .contact-box {
+        padding: 30px 20px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <h1>Chahat Grover</h1>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">Chahat Grover</div>
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#experience">Experience</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
 
-  <p>
-    Software Engineer | Backend Systems | AI at Scale | Telecom Platforms
-  </p>
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="badge">Software Engineer | Full Stack | Backend | AI</div>
+          <h1>Hi, I'm <span>Chahat Grover</span></h1>
+          <h2>Building reliable backend systems, AI products, and full-stack applications.</h2>
+          <p>
+            Computer Science graduate student at Arizona State University with hands-on experience in
+            backend engineering, full-stack development, REST APIs, distributed systems, AI-integrated
+            applications, and telecom-focused call quality analytics.
+          </p>
 
-  <h2>About</h2>
-  <p>
-    Computer Science graduate student at Arizona State University with experience in backend engineering,
-    REST APIs, distributed systems, AI-integrated applications, and telecom-focused call quality analytics.
-  </p>
+          <div class="buttons">
+            <a href="#projects" class="btn btn-primary">View Projects</a>
+            <a href="mailto:chahatg0117@gmail.com" class="btn btn-secondary">Contact Me</a>
+            <a href="https://github.com/cgrover4" target="_blank" class="btn btn-secondary">GitHub</a>
+            <a href="https://www.linkedin.com/in/chahatg01/" target="_blank" class="btn btn-secondary">LinkedIn</a>
+          </div>
+        </div>
 
-  <h2>Projects</h2>
+        <div class="profile-card">
+          <img src="profile.jpg" alt="Chahat Grover profile photo" class="profile-photo" onerror="this.style.display='none'; document.getElementById('placeholder').style.display='flex';" />
+          <div id="placeholder" class="photo-placeholder" style="display:none;">CG</div>
+          <h3>Chahat Grover</h3>
+          <p>M.S. Computer Software Engineering<br />Arizona State University</p>
+        </div>
+      </div>
+    </section>
 
-  <h3>AI Call Quality Analyzer</h3>
-  <p>
-    Built a Python/FastAPI carrier-grade telecommunications analytics platform to analyze simulated VoIP call sessions
-    across geographically distributed regions using latency, jitter, packet loss, throughput, and failure metrics.
-  </p>
+    <section id="about">
+      <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <p class="section-subtitle">
+          A software engineer focused on building practical, reliable, and scalable systems.
+        </p>
 
-  <h3>LUMOS: AI Knowledge Base Assistant</h3>
-  <p>
-    Built an AI-integrated knowledge base assistant using React, TypeScript, FastAPI, MongoDB Atlas, ChromaDB,
-    and Gemini API.
-  </p>
+        <div class="about-box">
+          I am a Computer Science graduate student at Arizona State University with experience in backend
+          engineering, full-stack development, REST API design, database systems, distributed systems, and
+          AI-integrated applications. I enjoy solving real-world engineering problems, debugging complex systems,
+          and building products that are useful, scalable, and easy to maintain.
+        </div>
+      </div>
+    </section>
 
-  <h3>ViVaWav3: Autonomous Wellness Agent</h3>
-  <p>
-    Built a real-time wellness platform using React, TypeScript, Node.js/Express, Firebase, Gemini API,
-    and MediaPipe.
-  </p>
+    <section id="skills">
+      <div class="container">
+        <h2 class="section-title">Technical Skills</h2>
+        <p class="section-subtitle">
+          Technologies and concepts I use across backend, full-stack, AI, and platform engineering projects.
+        </p>
 
-  <h2>Links</h2>
-  <p>
-    <a href="https://github.com/cgrover4">GitHub</a> |
-    <a href="https://www.linkedin.com/in/chahatg01/">LinkedIn</a> |
-    <a href="mailto:chahatg0117@gmail.com">Email</a>
-  </p>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <h3>Programming</h3>
+            <p>Python, Java, C++, JavaScript, TypeScript, SQL, Data Structures & Algorithms</p>
+          </div>
+
+          <div class="skill-card">
+            <h3>Backend & APIs</h3>
+            <p>FastAPI, Node.js, Express.js, REST APIs, API Integration, Backend Automation</p>
+          </div>
+
+          <div class="skill-card">
+            <h3>Frontend</h3>
+            <p>React, TypeScript, JavaScript, HTML, CSS, Responsive Web Design</p>
+          </div>
+
+          <div class="skill-card">
+            <h3>AI & Emerging Tech</h3>
+            <p>Gemini API, RAG Pipelines, ChromaDB, Vector Search, AI Agent Integration</p>
+          </div>
+
+          <div class="skill-card">
+            <h3>Databases & Tools</h3>
+            <p>MongoDB, PostgreSQL, MySQL, SQLite, Firebase, Git, GitHub, Docker, Linux</p>
+          </div>
+
+          <div class="skill-card">
+            <h3>Networking & Reliability</h3>
+            <p>TCP/UDP, IP Networking, VoIP Concepts, Latency, Jitter, Packet Loss, Throughput, Fault Tolerance</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <h2 class="section-title">Projects</h2>
+        <p class="section-subtitle">
+          Selected projects demonstrating full-stack development, backend systems, AI integration, and platform reliability.
+        </p>
+
+        <div class="projects-grid">
+          <div class="project-card">
+            <h3>AI Call Quality Analyzer</h3>
+            <p>
+              Built a carrier-grade telecommunications analytics platform to analyze simulated VoIP call sessions
+              across geographically distributed regions using latency, jitter, packet loss, throughput, and failure metrics.
+            </p>
+            <div class="tech-stack">
+              <span>Python</span><span>FastAPI</span><span>SQLite</span><span>React</span><span>Chart.js</span><span>Docker</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <h3>LUMOS: AI Knowledge Base Assistant</h3>
+            <p>
+              Built a full-stack AI knowledge base assistant that processes lecture audio, images, and notes into a
+              searchable knowledge system using a low-latency RAG pipeline.
+            </p>
+            <div class="tech-stack">
+              <span>React</span><span>TypeScript</span><span>FastAPI</span><span>MongoDB</span><span>ChromaDB</span><span>Gemini API</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <h3>ViVaWav3: Autonomous Wellness Agent</h3>
+            <p>
+              Built a real-time wellness platform integrating live movement data, AI-generated protocols,
+              Firebase-backed sync, and practitioner dashboard analytics.
+            </p>
+            <div class="tech-stack">
+              <span>React</span><span>TypeScript</span><span>Node.js</span><span>Firebase</span><span>Gemini API</span><span>MediaPipe</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <h3>Agilify</h3>
+            <p>
+              Built an agile project management platform for organizing tasks, tracking sprint progress,
+              managing workflows, and improving team collaboration through clean dashboards and backend APIs.
+            </p>
+            <div class="tech-stack">
+              <span>React</span><span>TypeScript</span><span>Node.js</span><span>Express</span><span>MongoDB</span><span>REST APIs</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <h3>Rezz</h3>
+            <p>
+              Built a reservation and booking management platform with user-friendly scheduling flows,
+              backend APIs, database-backed availability tracking, and responsive UI components.
+            </p>
+            <div class="tech-stack">
+              <span>React</span><span>Node.js</span><span>Express</span><span>MongoDB</span><span>REST APIs</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <h3>F1 Championship Dashboard</h3>
+            <p>
+              Built a Formula 1 analytics dashboard to visualize championship standings, race results,
+              driver performance, constructor rankings, and season trends using interactive charts.
+            </p>
+            <div class="tech-stack">
+              <span>Python</span><span>JavaScript</span><span>React</span><span>REST APIs</span><span>Chart.js</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <h2 class="section-title">Experience</h2>
+        <p class="section-subtitle">
+          Professional experience across backend systems, software development, consulting, APIs, and debugging.
+        </p>
+
+        <div class="experience-list">
+          <div class="experience-card">
+            <div class="date">Jul 2024 – Jul 2025</div>
+            <h3>Senior Analyst – Technology Consultant | Ernst & Young</h3>
+            <p>
+              Designed and integrated REST APIs and backend automation solutions in Python and SQL,
+              improving reliability and workflow efficiency across enterprise-scale systems.
+            </p>
+          </div>
+
+          <div class="experience-card">
+            <div class="date">Jan 2024 – Jul 2024</div>
+            <h3>Technology Consultant Intern | Ernst & Young</h3>
+            <p>
+              Built backend integrations and automation workflows using Python, SQL, and REST APIs,
+              while contributing to testing, debugging, and feature enhancements.
+            </p>
+          </div>
+
+          <div class="experience-card">
+            <div class="date">Oct 2023 – Dec 2023</div>
+            <h3>Software Developer Intern | ARI Simulation</h3>
+            <p>
+              Developed full-stack applications, integrated REST APIs and database components,
+              and collaborated across the SDLC to ship reliable software features.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-box">
+          <h2>Let's Connect</h2>
+          <p>
+            I am open to software engineering internship opportunities in full-stack, backend, AI, and platform engineering.
+          </p>
+
+          <div class="contact-links">
+            <a href="mailto:chahatg0117@gmail.com">Email</a>
+            <a href="https://github.com/cgrover4" target="_blank">GitHub</a>
+            <a href="https://www.linkedin.com/in/chahatg01/" target="_blank">LinkedIn</a>
+            <a href="resume.pdf" target="_blank">Download Resume</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 Chahat Grover. Built with HTML, CSS, and GitHub Pages.
+  </footer>
 </body>
 </html>
